@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compte à rebours – Brevet des collèges 2027</title>
+<style>
+html,body{margin:0;padding:0;background:transparent}
+body{padding:6px;font-family:"Trebuchet MS",Arial,sans-serif;color:#fff}
+.carte{max-width:560px;padding:22px 24px;border-radius:24px;background:#261552;border:4px solid #e0559a;box-shadow:0 6px 0 rgba(0,0,0,.25)}
+h1{margin:0 0 12px;font-size:1.3em;color:#f7c948}
+.ligne{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.jours{min-width:110px;padding:10px 18px;border-radius:20px;background:#f7c948;color:#2a1860;text-align:center}
+.jours strong{display:block;font-size:3em;line-height:1}
+.jours span{font-weight:bold;font-size:.95em}
+.texte{flex:1;min-width:180px;line-height:1.4}
+.texte b{display:block;font-size:1.1em}
+.soft{color:#d9d2f5}
+.bas{margin-top:14px;font-size:.95em}
+</style>
+</head>
+<body>
+<div class="carte">
+  <h1>Brevet des collèges 2027</h1>
+  <div class="ligne">
+    <div class="jours"><strong id="jours">–</strong><span>jours</span></div>
+    <div class="texte"><b>avant le début des épreuves écrites</b><span class="soft" id="detail"></span></div>
+  </div>
+  <div class="bas soft">Premières épreuves : jeudi 24 juin 2027.</div>
+</div>
+<script>
+(function(){
+  var cible = new Date(2027, 5, 24, 8, 0, 0).getTime();
+  var j = document.getElementById("jours");
+  var d = document.getElementById("detail");
+  function maj(){
+    var reste = cible - new Date().getTime();
+    if (reste <= 0) { j.textContent = "0"; d.textContent = "C’est le grand jour : bonne chance à tous !"; return; }
+    j.textContent = Math.floor(reste / 86400000);
+    d.textContent = "et " + Math.floor((reste % 86400000) / 3600000) + " h " + Math.floor((reste % 3600000) / 60000) + " min";
+  }
+  maj();
+  setInterval(maj, 30000);
+})();
+</script>
+</body>
+</html>
